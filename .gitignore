@@ -1,0 +1,17 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+
+# Local secrets / OAuth
+.env
+credentials.json
+token.json
+client_secret*.json
+*.pem
+*.key
+
+# Runtime / OS
+*.log
+.DS_Store
+Thumbs.db
