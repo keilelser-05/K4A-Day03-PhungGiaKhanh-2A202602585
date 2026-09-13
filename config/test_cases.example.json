@@ -1,0 +1,42 @@
+[
+  {
+    "id": "TC01",
+    "type": "direct_query",
+    "question": "Bạn có thể giúp tôi quản lý lịch theo những cách nào?",
+    "expected_behavior": "Trả lời trực tiếp, không gọi tool.",
+    "expected_tools": [],
+    "complexity": "Low"
+  },
+  {
+    "id": "TC02",
+    "type": "single_tool_query",
+    "question": "Hãy xem lịch của tôi từ 08:00 đến 18:00 ngày 15/09/2026.",
+    "expected_behavior": "Gọi calendar_list_events.",
+    "expected_tools": ["calendar_list_events"],
+    "complexity": "Medium"
+  },
+  {
+    "id": "TC03",
+    "type": "create_event",
+    "question": "Thêm lịch học Machine Learning từ 09:00 đến 11:00 ngày 17/09/2026.",
+    "expected_behavior": "Gọi calendar_create_event.",
+    "expected_tools": ["calendar_create_event"],
+    "complexity": "Medium"
+  },
+  {
+    "id": "TC04",
+    "type": "multi_step_reasoning",
+    "question": "Dời buổi học Deep Learning chiều ngày 15/09/2026 sang 16:00 và giữ nguyên thời lượng 2 tiếng.",
+    "expected_behavior": "List events để lấy event_id, sau đó update event.",
+    "expected_tools": ["calendar_list_events", "calendar_update_event"],
+    "complexity": "High"
+  },
+  {
+    "id": "TC05",
+    "type": "edge_case_handling",
+    "question": "Xóa buổi họp Project ABC chiều ngày 15/09/2026.",
+    "expected_behavior": "List trước; không tìm thấy thì không delete.",
+    "expected_tools": ["calendar_list_events"],
+    "complexity": "High"
+  }
+]
