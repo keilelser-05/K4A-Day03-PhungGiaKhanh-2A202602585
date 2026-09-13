@@ -1,0 +1,80 @@
+[
+  {
+    "test_id": "LIVE_UPDATE",
+    "step": 1,
+    "action_type": "MCP_TOOL_CALL",
+    "tool_name": "calendar_list_events",
+    "arguments": {
+      "time_max": "2026-09-21T00:00:00+07:00",
+      "time_min": "2026-09-20T00:00:00+07:00"
+    },
+    "observation": {
+      "status": "SUCCESS",
+      "data": {
+        "result": [
+          {
+            "id": "9c1tcrhh5d3aqkf4vhjc3io89c",
+            "summary": "TEST MCP",
+            "description": "",
+            "start": {"dateTime": "2026-09-20T20:00:00+07:00", "timeZone": "Asia/Ho_Chi_Minh"},
+            "end": {"dateTime": "2026-09-20T20:30:00+07:00", "timeZone": "Asia/Ho_Chi_Minh"}
+          }
+        ]
+      }
+    }
+  },
+  {
+    "test_id": "LIVE_UPDATE",
+    "step": 2,
+    "action_type": "MCP_TOOL_CALL",
+    "tool_name": "calendar_update_event",
+    "arguments": {
+      "end_datetime": "2026-09-20T21:30:00+07:00",
+      "event_id": "9c1tcrhh5d3aqkf4vhjc3io89c",
+      "start_datetime": "2026-09-20T21:00:00+07:00"
+    },
+    "observation": {
+      "status": "SUCCESS",
+      "data": {
+        "result": {
+          "id": "9c1tcrhh5d3aqkf4vhjc3io89c",
+          "summary": "TEST MCP",
+          "description": "",
+          "start": {"dateTime": "2026-09-20T21:00:00+07:00", "timeZone": "Asia/Ho_Chi_Minh"},
+          "end": {"dateTime": "2026-09-20T21:30:00+07:00", "timeZone": "Asia/Ho_Chi_Minh"}
+        }
+      }
+    }
+  },
+  {"test_id": "LIVE_UPDATE", "step": 3, "action_type": "FINAL_ANSWER", "output": "Sự kiện TEST MCP đã được dời sang 20/09/2026, 21:00–21:30."},
+  {
+    "test_id": "LIVE_DELETE",
+    "step": 1,
+    "action_type": "MCP_TOOL_CALL",
+    "tool_name": "calendar_list_events",
+    "arguments": {"time_max": "2026-09-20T23:59:59+07:00", "time_min": "2026-09-20T00:00:00+07:00"},
+    "observation": {
+      "status": "SUCCESS",
+      "data": {
+        "result": [
+          {
+            "id": "9c1tcrhh5d3aqkf4vhjc3io89c",
+            "summary": "TEST MCP",
+            "description": "",
+            "start": {"dateTime": "2026-09-20T21:00:00+07:00", "timeZone": "Asia/Ho_Chi_Minh"},
+            "end": {"dateTime": "2026-09-20T21:30:00+07:00", "timeZone": "Asia/Ho_Chi_Minh"}
+          }
+        ]
+      }
+    }
+  },
+  {
+    "test_id": "LIVE_DELETE",
+    "step": 2,
+    "action_type": "MCP_TOOL_CALL",
+    "tool_name": "calendar_delete_event",
+    "arguments": {"event_id": "9c1tcrhh5d3aqkf4vhjc3io89c"},
+    "observation": {"status": "SUCCESS", "data": {"result": {"deleted": true, "event_id": "9c1tcrhh5d3aqkf4vhjc3io89c"}}}
+  },
+  {"test_id": "LIVE_DELETE", "step": 3, "action_type": "FINAL_ANSWER", "output": "Đã xóa sự kiện TEST MCP vào ngày 20/09/2026."}
+]
